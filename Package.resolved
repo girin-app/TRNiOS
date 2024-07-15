@@ -21,10 +21,10 @@
     {
       "identity" : "cryptocore",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Girin-Wallet/CryptoCore",
+      "location" : "https://github.com/Girin-App/CryptoCore",
       "state" : {
-        "branch" : "main",
-        "revision" : "fc5f3bf94d346134aec5445b8a40db4ea6343e54"
+        "revision" : "5bd104b9feedc0be8c67c8f476884f58c27891ce",
+        "version" : "0.1.1"
       }
     },
     {
@@ -77,8 +77,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-crypto.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "46072478ca365fe48370993833cb22de9b41567f"
+        "revision" : "46072478ca365fe48370993833cb22de9b41567f",
+        "version" : "3.5.2"
       }
     },
     {
@@ -149,8 +149,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Girin-app/WalletKit",
       "state" : {
-        "branch" : "main",
-        "revision" : "6315eb2f036a392ea8de469cd0e86b7fb7d422db"
+        "revision" : "d3381dfbff9bf6c9120bb3dcfffb9850e186b065",
+        "version" : "0.1.1"
       }
     },
     {
@@ -158,8 +158,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Girin-app/Web3.swift.git",
       "state" : {
-        "branch" : "test/package",
-        "revision" : "ce0e0d046c5c9140f1b27e13588a499c7ade50d5"
+        "revision" : "342020f7268e77b1951a098a9f64f919b6324075",
+        "version" : "0.9.0"
       }
     },
     {

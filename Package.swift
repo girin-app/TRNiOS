@@ -16,8 +16,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/Girin-app/Web3.swift.git", branch: "test/package"),
-        .package(url: "https://github.com/Girin-app/WalletKit", branch: "main"),
+        .package(url: "https://github.com/Girin-app/Web3.swift.git", .upToNextMajor(from: "0.9.0")),
+        .package(url: "https://github.com/Girin-app/WalletKit", .upToNextMajor(from: "0.1.1")),
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.9.1"))
     ],
     targets: [
