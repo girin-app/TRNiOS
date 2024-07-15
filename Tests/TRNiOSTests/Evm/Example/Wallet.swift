@@ -3,7 +3,7 @@ import Web3
 import WalletKit
 @testable import TRNiOS
 
-final class TestWallet: XCTestCase {
+final class TestEvmWallet: XCTestCase {
     func testMnemonic() throws {
         
         let mnemonic = "model vanish nest share talk duck promote useful base wrong veteran pink"
