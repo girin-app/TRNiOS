@@ -11,7 +11,7 @@ final class TestBridge: XCTestCase {
         // 1. initial bridge call method
         let destination = EthereumAddress(hexString: "0x72ee785458b89d5ec64bec8410c958602e6f7673")!
         let amount = EthereumQuantity(quantity: BigUInt(1000000))
-        let method = try Method(args: WithdrawXrpArgs(amount: amount, destination: destination))
+        let method = MethodWithdrawXrp(args: WithdrawXrpArgs(amount: amount, destination: destination))
         
         
         // 2. create Extrinsic
@@ -24,7 +24,7 @@ final class TestBridge: XCTestCase {
         let mortal = Mortal(current: try UInt64(block.header.number.quantity))
         
         let tip = EthereumQuantity(quantity: BigUInt.zero)
-        var extrinsic = method.createExtrinsic(nonce: try EthereumQuantity(nonce), era: mortal.toMortalEra(), tip: tip)
+        var extrinsic = SubmittableExtrinsic(signature: Signature(era: mortal.toMortalEra(), nonce: try EthereumQuantity(nonce), tip: tip), method: method)
         
         // 3. get sign info
         let runtimeVersion = try await api.stateGetRuntimeVersion(hash: blockHash)
