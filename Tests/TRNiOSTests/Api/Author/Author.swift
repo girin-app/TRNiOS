@@ -4,7 +4,7 @@ import BigInt
 @testable import TRNiOS
 
 final class TestAuthor: XCTestCase {
-    func testSubmittableExtrinsic() async throws {
+    func testSubmittableExtrinsicMethodWithdrawXrp() async throws {
         let signer = EthereumAddress(hexString: "0x55D77A60Fd951117f531D2277a5BB4aFbE3fB292")!
         let signature = try EthereumData(Data(hex: "b25593b528be5d02feca601b9c71416f7d32eddbd89a4e5ba4e0c20931f4993852d786d5ff70615218ede9ee1605692bca3311d89a1d55a9c88f7d0f9978bfd400"))
         let mortalEra = MortalEra(mortalEra: Data(hex: "7605"))
@@ -20,6 +20,31 @@ final class TestAuthor: XCTestCase {
         
         
         XCTAssertEqual("0x01028455d77a60fd951117f531d2277a5bb4afbe3fb292b25593b528be5d02feca601b9c71416f7d32eddbd89a4e5ba4e0c20931f4993852d786d5ff70615218ede9ee1605692bca3311d89a1d55a9c88f7d0f9978bfd4007605cc00120340420f0000000000000000000000000072ee785458b89d5ec64bec8410c958602e6f7673", try extrinsic.toHex())
+    }
+    
+    func testSubmittableExtrinsicMethodFeeProxy() async throws {
+        let extrinsic = SubmittableExtrinsic(
+            signature: Signature(
+                signer: EthereumAddress(hexString: "0x55D77A60Fd951117f531D2277a5BB4aFbE3fB292")!,
+                era: MortalEra(mortalEra: Data(hex: "2603")),
+                nonce: EthereumQuantity(quantity: BigUInt(83)),
+                tip: EthereumQuantity(quantity: BigUInt.zero)
+            ),
+            method: MethodFeeProxy(
+                args: FeeProxyArgs(
+                    paymentAsset: BigUInt(1),
+                    maxPayment: BigUInt.zero,
+                    call: MethodWithdrawXrp(
+                        args: WithdrawXrpArgs(
+                            amount: EthereumQuantity(quantity: BigUInt("1000000")),
+                            destination: EthereumAddress(hexString: "0x72ee785458b89d5ec64bec8410c958602e6f7673")!
+                        )
+                    )
+                )
+            )
+        )
+        
+        XCTAssertEqual("0x5d028455d77a60fd951117f531d2277a5bb4afbe3fb292010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010126034d01001f000100000000000000000000000000000000000000120340420f0000000000000000000000000072ee785458b89d5ec64bec8410c958602e6f7673", try extrinsic.toHex())
     }
     
     func testSign() throws {

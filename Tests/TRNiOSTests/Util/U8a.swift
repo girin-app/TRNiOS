@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by yun on 7/14/24.
-//
-
 import Foundation
 import XCTest
 import BigInt

@@ -36,6 +36,7 @@ enum RpcMethod: String, Codable {
     
     // state
     case StateGetRuntimeVersion = "state_getRuntimeVersion"
+    case StateCall = "state_call"
 }
 
 struct JSONRpcRequset: Codable {

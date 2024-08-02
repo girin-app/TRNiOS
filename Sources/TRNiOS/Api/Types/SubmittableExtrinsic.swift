@@ -2,7 +2,7 @@ import Foundation
 import BigInt
 import Web3
 
-struct SubmittableExtrinsic {
+public struct SubmittableExtrinsic {
     var signature: Signature
     var method: Method
     
@@ -47,7 +47,7 @@ struct SubmittableExtrinsic {
 
 struct Signature: Codable {
     var signer: EthereumAddress?
-    var signature: EthereumData?
+    var signature: EthereumData? = EthereumData([UInt8](repeating: 1, count: 65))
     var era: MortalEra
     var nonce: EthereumQuantity
     var tip: EthereumQuantity

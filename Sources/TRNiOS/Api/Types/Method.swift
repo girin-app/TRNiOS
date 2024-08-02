@@ -10,7 +10,7 @@ protocol Method {
 
 struct MethodWithdrawXrp: Method {
     let callIndex: [UInt8] = Data(hex: "1203").bytes
-    let args: WithdrawXrpArgs
+    var args: WithdrawXrpArgs
 
     func toU8a() -> [UInt8] {
         var u8a = callIndex
@@ -27,7 +27,7 @@ struct WithdrawXrpArgs {
 
 struct MethodFeeProxy: Method {
     let callIndex: [UInt8] = Data(hex: "1f00").bytes
-    let args: FeeProxyArgs
+    var args: FeeProxyArgs
 
     func toU8a() -> [UInt8] {
         var u8a = callIndex
@@ -40,6 +40,6 @@ struct MethodFeeProxy: Method {
 
 struct FeeProxyArgs {
     let paymentAsset: BigUInt
-    let maxPayment: BigUInt
+    var maxPayment: BigUInt
     let call: MethodWithdrawXrp
 }
