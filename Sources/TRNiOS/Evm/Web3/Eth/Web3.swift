@@ -8,10 +8,21 @@ public struct AmountsIn: Codable {
 }
 
 public extension Web3.Eth {
-    func getAmountsIn(gasCostInXRP: Int, feeAssetID: Int) -> Promise<AmountsIn> {
+    func getAmountsIn(gasCostInXRP: Int, feeAssetID: Int) -> Promise<UInt> {
         return Promise { seal in
             self.getAmountsIn(gasCostInXRP: gasCostInXRP, feeAssetID: feeAssetID) { response in
-                seal.resolve(response.result, response.error)
+                if let err = response.error {
+                    seal.reject(err)
+                    return
+                }
+            
+                guard let maxPayment = response.result?.Ok.first else {
+                    let error = NSError(domain: "feeproxy", code: 0, userInfo: [NSLocalizedDescriptionKey: "unknown maxPayments"])
+                    seal.reject(error)
+                    return
+                }
+                    
+                seal.resolve(maxPayment, nil)
             }
         }
     }

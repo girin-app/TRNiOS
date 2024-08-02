@@ -92,11 +92,7 @@ final class TestBridge: XCTestCase {
         let runtimeDispatchInfo = try await api.stateCallTransactionPayment(extrinsic: extrinsic)
 
         // 3.2 fee calculate XRP > TRN
-        let res = try web3.eth.getAmountsIn(gasCostInXRP: Int(runtimeDispatchInfo.partialFee), feeAssetID: ROOT_ID).wait()
-        guard let maxPayment = res.Ok.first else {
-            throw NSError(domain: "feeproxy", code: 0, userInfo: [NSLocalizedDescriptionKey: "unknown maxPayments"])
-        }
-        
+        let maxPayment = try web3.eth.getAmountsIn(gasCostInXRP: Int(runtimeDispatchInfo.partialFee), feeAssetID: ROOT_ID).wait()
         method.args.maxPayment = BigUInt((Double(maxPayment) * 1.05).rounded(.toNearestOrAwayFromZero))
         extrinsic.method = method
         

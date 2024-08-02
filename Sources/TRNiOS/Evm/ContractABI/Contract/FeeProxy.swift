@@ -30,7 +30,6 @@ open class GenericFeeProxyContract: StaticContract, FeeProxyContract {
 public extension FeeProxyContract {
     
     func callWithFeePreferences(asset: EthereumAddress, maxPayment: BigUInt, target: EthereumAddress, input: EthereumData) -> SolidityInvocation {
-        print(input.bytes.count)
         let inputs = [
             SolidityFunctionParameter(name: "_asset", type: .address),
             SolidityFunctionParameter(name: "_maxPayments", type: .uint128),

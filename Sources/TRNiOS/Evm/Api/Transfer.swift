@@ -15,11 +15,7 @@ func getFeeProxyPricePair(web3: Web3, gasEstimate: BigUInt, feeAssetId: Int, sli
     let gasCostInXRP = gasCostInEth / BigUInt(10).power(12) + (remainder > 0 ? 1 : 0)
     
     
-    let res = try web3.eth.getAmountsIn(gasCostInXRP: Int(gasCostInXRP), feeAssetID: feeAssetId).wait()
-    
-    guard let maxPayment = res.Ok.first else {
-        throw NSError(domain: "feeproxy", code: 0, userInfo: [NSLocalizedDescriptionKey: "unknown maxPayments"])
-    }
+    let maxPayment = try web3.eth.getAmountsIn(gasCostInXRP: Int(gasCostInXRP), feeAssetID: feeAssetId).wait()
     
     return (maxPayment: BigUInt(maxPayment), maxFeePerGas: maxFeePerGas.quantity, estimateGasCost: gasCostInXRP)
 }
