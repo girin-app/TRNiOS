@@ -8,7 +8,7 @@ public enum Chain {
 
 public class Api {
     let url: URL
-    let genesisHash: EthereumData
+    public let genesisHash: EthereumData
     public init(chain: Chain) throws {
         switch(chain) {
         case .root:

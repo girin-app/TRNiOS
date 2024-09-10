@@ -1,10 +1,10 @@
 import Foundation
 
-struct Mortal {
+public struct Mortal {
     let period: UInt64
     let quantizedPhase: UInt64
 
-    init(period: UInt64 = 80, current: UInt64) {
+    public init(period: UInt64 = 80, current: UInt64) {
         // Calculate the next power of two
         let nextPowerOfTwo = period.nextPowerOfTwo()
 
@@ -24,7 +24,7 @@ struct Mortal {
         self.quantizedPhase = quantizedPhase
     }
     
-    func toMortalEra() -> MortalEra {
+    public func toMortalEra() -> MortalEra {
         return MortalEra(mortalEra: self.toU8a())
     }
     

@@ -26,6 +26,11 @@ final class TestBridge: XCTestCase {
         let tip = EthereumQuantity(quantity: BigUInt.zero)
         var extrinsic = SubmittableExtrinsic(signature: Signature(era: mortal.toMortalEra(), nonce: try EthereumQuantity(nonce), tip: tip), method: method)
         
+        
+        // 3.1 gas simulate
+//        let runtimeDispatchInfo = try await api.stateCallTransactionPayment(extrinsic: extrinsic)
+    
+        
         // 3. get sign info
         let runtimeVersion = try await api.stateGetRuntimeVersion(hash: blockHash)
         

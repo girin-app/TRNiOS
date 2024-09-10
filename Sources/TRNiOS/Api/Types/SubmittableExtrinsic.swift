@@ -3,10 +3,15 @@ import BigInt
 import Web3
 
 public struct SubmittableExtrinsic {
-    var signature: Signature
-    var method: Method
+    public var signature: Signature
+    public var method: Method
     
-    mutating func sign(privateKey: EthereumPrivateKey, runtimeVersion: RuntimeVersion, genensisHash: EthereumData, blockHash: EthereumData) throws {
+    public init(signature: Signature, method: Method) {
+        self.signature = signature
+        self.method = method
+    }
+    
+    public mutating func sign(privateKey: EthereumPrivateKey, runtimeVersion: RuntimeVersion, genensisHash: EthereumData, blockHash: EthereumData) throws {
         let payload = try getPayload(runtimeVersion: runtimeVersion, genensisHash: genensisHash, blockHash: blockHash)
         let sig = try privateKey.sign(message: payload)
 
@@ -39,18 +44,26 @@ public struct SubmittableExtrinsic {
         return count + u8a
     }
     
-    func toHex() throws -> String {
+    public func toHex() throws -> String {
         let u8aHex = try self.toU8a().toHexString()
         return "0x" + u8aHex
     }
 }
 
-struct Signature: Codable {
+public struct Signature: Codable {
     var signer: EthereumAddress?
     var signature: EthereumData? = EthereumData([UInt8](repeating: 1, count: 65))
     var era: MortalEra
     var nonce: EthereumQuantity
     var tip: EthereumQuantity
+    
+    public init(signer: EthereumAddress? = nil, signature: EthereumData? = EthereumData([UInt8](repeating: 1, count: 65)), era: MortalEra, nonce: EthereumQuantity, tip: EthereumQuantity) {
+        self.signer = signer
+        self.signature = signature
+        self.era = era
+        self.nonce = nonce
+        self.tip = tip
+    }
     
     func toU8a() throws -> [UInt8] {
         guard let signer = signer else {
@@ -71,6 +84,6 @@ struct Signature: Codable {
     }
 }
 
-struct MortalEra: Codable {
+public struct MortalEra: Codable {
     var mortalEra: Data
 }

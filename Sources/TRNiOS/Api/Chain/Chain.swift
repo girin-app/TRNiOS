@@ -21,15 +21,15 @@ struct BlockResult: Codable {
 }
 
 public struct Block: Codable {
-    var header: Header
-    var extrinsics: [EthereumData]
+    public var header: Header
+    public var extrinsics: [EthereumData]
 }
 
-struct Header: Codable {
-    var parentHash: EthereumData
-    var number: EthereumQuantity
-    var stateRoot: EthereumData
-    var extrinsicsRoot: EthereumData
+public struct Header: Codable {
+    public var parentHash: EthereumData
+    public var number: EthereumQuantity
+    public var stateRoot: EthereumData
+    public var extrinsicsRoot: EthereumData
     var digest: Log
 }
 
