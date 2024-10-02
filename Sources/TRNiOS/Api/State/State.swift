@@ -36,7 +36,7 @@ struct Weight {
 public struct RuntimeDispatchInfo {
     var weight: Weight
     var `class`: Int
-    var partialFee: BigUInt
+    public var partialFee: BigUInt
     
     init(src: Data) throws {
         let data = src.bytes

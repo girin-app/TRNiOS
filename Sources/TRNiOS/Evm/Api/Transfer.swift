@@ -3,7 +3,7 @@ import Web3
 import Web3PromiseKit
 import BigInt
 
-func getFeeProxyPricePair(web3: Web3, gasEstimate: BigUInt, feeAssetId: Int, slippage: Double = 0) async throws -> (maxPayment: BigUInt, maxFeePerGas: BigUInt, estimateGasCost: BigUInt) {
+public func getFeeProxyPricePair(web3: Web3, gasEstimate: BigUInt, feeAssetId: Int, slippage: Double = 0) async throws -> (maxPayment: BigUInt, maxFeePerGas: BigUInt, estimateGasCost: BigUInt) {
     let block = try web3.eth.getBlockByNumber(block: .latest, fullTransactionObjects: false).wait()
     
     guard let maxFeePerGas = block?.baseFeePerGas else {
